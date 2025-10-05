@@ -1,0 +1,6 @@
+pynput
+requests
+json
+threading
+pyautogui
+pywin32
