@@ -21,11 +21,7 @@ KL-server/
    Python must be installed and accessible via terminal (`python`) on the target machine
 
 3. **Dependencies**  
-   `main.py` will automatically install the required libraries:
-   - pynput  
-   - requests  
-   - pyautogui  
-   - pywin32  
+   `main.py` will automatically install the required libraries and start the logger
 
 ## 🚀 How to Run
 1. Insert the USB stick  
