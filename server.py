@@ -2,25 +2,20 @@ from flask import Flask, request
 import os
 import threading
 import logging
-from pyngrok import ngrok   # <--- aggiunto
+from pyngrok import ngrok  
 
 app = Flask(__name__)
 
-# Configurazione cartella di salvataggio
 save_path = "screenshots"
 os.makedirs(save_path, exist_ok=True)
 
-# File contatore
 counter_file = os.path.join(save_path, "counter.txt")
 
-# Lock per evitare race condition
 lock = threading.Lock()
 
-# Configurazione logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 
 def get_next_index():
-    """Restituisce l'indice successivo per il nome file screenshot."""
     with lock:
         if not os.path.exists(counter_file):
             with open(counter_file, "w") as f:
@@ -35,7 +30,6 @@ def get_next_index():
 
 @app.route('/', methods=['POST'])
 def ricevi_testo():
-    """Riceve testo in formato JSON e lo salva su file."""
     data = request.get_json()
     logging.info(f"Received text: {data}")
     with open("received_data.txt", "a", encoding="utf-8") as file:
@@ -44,7 +38,6 @@ def ricevi_testo():
 
 @app.route('/screenshot', methods=['POST'])
 def ricevi_immagine():
-    """Riceve un'immagine e la salva con nome incrementale."""
     if 'file' not in request.files:
         return {"status": "error", "message": "No file uploaded"}, 400
 
@@ -61,9 +54,9 @@ def ricevi_immagine():
 
 if __name__ == "__main__":
     port = 56860
-    # Avvia tunnel Ngrok
     public_url = ngrok.connect(port)
     print("Server pubblico Ngrok:", public_url)
 
     # Avvia Flask
     app.run(host='0.0.0.0', port=port)
+
