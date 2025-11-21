@@ -2,7 +2,8 @@ from flask import Flask, request
 import os
 import threading
 import logging
-from pyngrok import ngrok  
+from pyngrok import ngrok 
+from termcolor import colored
 
 app = Flask(__name__)
 
@@ -55,8 +56,6 @@ def ricevi_immagine():
 if __name__ == "__main__":
     port = 56860
     public_url = ngrok.connect(port)
-    print("Server pubblico Ngrok:", public_url)
+    print(colored(f"{public_url}", "cyan"))
 
-    # Avvia Flask
     app.run(host='0.0.0.0', port=port)
-
