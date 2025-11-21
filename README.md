@@ -14,7 +14,7 @@
    pyinstaller --onefile --noconsole logger.py
    ```
 3. **Launching**  
-   Copy the `server.py` and `logger.exe` in a USB stick, plug it in a machine and launch the .exe
+   Copy the `server.txt` and `logger.exe` in a USB stick, plug it in a machine and launch the .exe
 
 
 ## 🖥️ Server (Receiver)
