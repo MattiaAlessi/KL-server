@@ -22,7 +22,7 @@ On the receiving machine. It will:
 - Save keyboard data to `received_data.txt`  
 - Save screenshots to the `screenshots/` folder with incremental filenames (`Screenshot_0.png`, `Screenshot_1.png`, ...)  
 
-> ⚠️ This project is a modified version of [David Bombal's Python Keylogger](https://github.com/davidbombal/python-keylogger/blob/main/keylogger.py), adapted for screenshot capture, stealth execution, and remote data transmission.
+> ⚠️ This project is a modified version of [David Bombal's Python Keylogger](https://github.com/davidbombal/python-keylogger/blob/main/keylogger.py), adapted for screenshot capture, stealth execution, and remote data transmission.  
 > The GUI version is still being under construction, check it [here]()
 
 ## 🔒 Notes
